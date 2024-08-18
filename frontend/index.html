@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserir Produtos na tabela</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Cadastrar um produto</h2>
+        <div class="input-data">
+            <input class="nomeProduto" type="text" required placeholder=" ">
+            <label for="nomeProduto">Nome do Produto</label>
+            <div class="underline"></div>
+        </div>
+        <div class="input-data">
+            <input class="valorProduto" type="number" required placeholder=" ">
+            <label for="valorProduto">Valor do Produto</label>
+            <div class="underline"></div>
+        </div>
+        <div class="buttonContainer">
+            <button id="inserirProduto">Inserir Produto</button>
+        </div>
+
+        <div>
+            <a href="./delete.html"><button  class="metodoContainer">Deletar um protudo</button></a>
+        </div>
+        <div>
+            <a href="./listaProdutos.html"><button class="verLista">Ver lista</button></a>
+        </div>
+    </div>
+
+    <script src="./javascript/inserirProdutos.js"></script>
+</body>
+</html>

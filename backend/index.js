@@ -1,15 +1,43 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const { Client } = require('pg');
 const config = require('./database');
 
+
+app.use(cors())
 app.use(express.json());
 
-app.get('/', async (req, res) => {
-    res.json({
-        message: 'Bem vindo á API',
-        status: "Sucess"
-    });
+app.get('/listaProdutos', async (req, res) => {
+    async function listaProdutos (){
+        const client = new Client(config);
+        try{
+            await client.connect();
+            const result = await client.query('SELECT * FROM public.produtos ORDER BY id ASC');
+            return result.rows
+        }catch (error){
+            console.error("Erro ao executar comando");
+            res.status(500).json({
+                message: 'Erro ao buscar dados',
+                error: error.message
+            })
+        }finally{
+            await client.end();
+        }
+    }
+
+    try{
+        const produtos = await listaProdutos();
+        res.status(200).json({
+            message:'Dados buscados com sucesso',
+            data: produtos
+        })
+    }catch (error) {
+        res.status(500).json({
+            message: 'Erro ao buscar dados',
+            error: error.message
+        });
+    }
 });
 
 app.post('/data', (req, res) => {
@@ -42,6 +70,36 @@ app.post('/data', (req, res) => {
     insertProduto()
 });
 
-app.listen(3000, () => {
-    console.log('Servidor Rodando em https://localhost:3000');
+app.delete('/delete', (req, res) => {
+    const cliente = new Client(config);
+    const jsonData = req.body;
+    console.log(jsonData)
+   
+    async function deleteProduto(){
+        try{
+
+            await cliente.connect();
+            const query = `DELETE FROM produtos WHERE nomeProduto = $1`;
+            const values = [jsonData.nomeProduto];
+            await cliente.query(query, values);
+            res.status(200).json({
+                message: 'Deletado com sucesso'
+            })
+
+        }catch(error){
+            console.error('Erro ao executar comando', error);
+            res.status(500).json({
+                message:'Erro ao deletar dados',
+                error: error.message
+            })
+        }finally{
+            await cliente.end();
+        }
+    }
+
+    deleteProduto();
+});
+
+app.listen(3001, () => {
+    console.log('Servidor Rodando em http://localhost:3001');
 });
