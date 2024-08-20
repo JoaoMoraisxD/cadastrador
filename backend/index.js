@@ -40,6 +40,11 @@ app.get('/listaProdutos', async (req, res) => {
     }
 });
 
+app.post('/login', (req, res) => {
+    const jsonData = req.body;
+    console.log('Dados:', jsonData);
+})
+
 app.post('/data', (req, res) => {
     const jsonData = req.body;
     console.log(jsonData);
