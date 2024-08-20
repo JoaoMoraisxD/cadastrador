@@ -20,13 +20,29 @@ body {
     justify-content: center;
     min-height: 100vh;
     background: linear-gradient(-135deg, #c850c0, #4158d0);
+    flex-wrap: nowrap;
+    gap: 50px;
+}
+
+@media (max-width: 650px) {
+    body {
+        flex-direction: column;
+        gap: 20px; 
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        gap: 200px;
+    }
 }
 
 .wrapper {
     width: 450px;
     background: #fff;
     padding: 30px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.642);
+    border-radius: 20px;
 }
 
 .wrapper .input-data {
@@ -94,7 +110,7 @@ margin: 50px;
 
 #inserirProduto {
     width: 250px;
-    padding: 20px;
+    padding: 10px;
     border: none;
     background: linear-gradient(to left, #1d8b3a,#3db05c, #189a3a);
     border-radius: 30px;
@@ -107,7 +123,7 @@ margin: 50px;
 
 #deletarProduto {
     width: 250px;
-    padding: 20px;
+    padding: 10px;
     border: none;
     background: linear-gradient(to left, #b22525,#be2c2c, #b70909);
     border-radius: 30px;
@@ -120,7 +136,7 @@ margin: 50px;
 
 #listButton {
      width: 250px;
-    padding: 20px;
+    padding: 10px;
     border: none;
     background: linear-gradient(to left, #4158d0,#4158d0, #4158d0);
     border-radius: 30px;
@@ -144,29 +160,48 @@ margin: 50px;
 }
 
 .metodoContainer {
+    border: none;
     display: flex;
+    float: left;
     margin: 10px;
+    width: 170px;
     padding: 7px;
     border-radius: 15px;
-    font-weight: 600;
+    font-weight: 500;
     transition: filter 0.3 ease;
+    justify-content: center;
+    color: #fff;
+    background: linear-gradient(to left, #b22525,#be2c2c, #b70909);
+
 }
 .verLista {
+    border: none;
     display: flex;
+    float: left;
+    width: 170px;
     margin: 10px;
     padding: 7px;
     border-radius: 15px;
-    font-weight: 600;
+    font-weight: 500;
     transition: filter 0.3 ease;
+    justify-content: center;
+    color: white;
+    background: linear-gradient(to left, #4158d0,#4158d0, #4158d0);
 }
 
 .insertButton {
+    border: none;
     display: flex;
+    float: left;
+    width: 170px;
     margin: 10px;
     padding: 7px;
     border-radius: 15px;
-    font-weight: 600;
+    font-weight: 500;
     transition: filter 0.3 ease;
+    justify-content: center;
+    color: #fff;
+    background: linear-gradient(to left, #1d8b3a,#3db05c, #189a3a);
 }
 
 .verLista:hover {
@@ -184,3 +219,97 @@ margin: 50px;
     cursor: pointer;
 }
 
+#submitButton {
+    width: 250px;
+    padding: 10px;
+    border: none;
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #fff;
+    transition: filter 0.3 ease;
+    cursor: pointer;
+}
+
+.formLogin {
+    width: 300px;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.642);
+    border-radius: 20px;
+}
+
+.formLogin .input-data {
+    height: 40px;
+    width: 100%;
+    border: none;
+    position: relative;
+    margin-top: 50px;
+}
+
+.formLogin .input-data input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid silver;
+    padding-bottom: 10px;
+}
+
+.formLogin .input-data label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: grey;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-size: 17px;
+}
+
+.formLogin .input-data input:focus ~ label,
+.formLogin .input-data input:not(:placeholder-shown) ~ label {
+    transform: translateY(-25px);
+    font-size: 12px;
+    color: #4158d0;
+}
+
+.formLogin .input-data .underline {
+    position: absolute;
+    bottom: 0px;
+    height: 2px;
+    width: 100%;
+}
+
+.formLogin .input-data .underline:before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: #4158d0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.formLogin .input-data input:focus ~ .underline:before,
+.formLogin .input-data input:not(:placeholder-shown) ~ .underline:before {
+  transform: scale(1);
+}
+
+.sideContainer {
+    width: 350px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.642);
+    border-radius: 5px;
+}
+
+@media (min-width: 850px){
+    .sideContainer {
+        width: 600px;
+        background: #fff;
+        padding: 10px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.642);
+        border-radius: 5px;
+    }
+}
