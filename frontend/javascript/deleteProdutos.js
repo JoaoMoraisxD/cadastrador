@@ -3,7 +3,7 @@ const buttonDelete = document.getElementById('deletarProduto');
 
 
 buttonDelete.addEventListener('click', async () => {
-    
+    const token = localStorage.getItem('authToken');
     const nomeProdutoElements = document.getElementsByClassName('nomeProdutoForDelete');
     console.log(nomeProdutoElements[0].value);
     if (nomeProdutoElements[0].value.length > 0) {
@@ -11,8 +11,13 @@ buttonDelete.addEventListener('click', async () => {
 
         try{
             const response = await axios.delete(urlDelete, {
-           data: {nomeProduto: nomeProduto}
-        });
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                data: {
+                    nomeProduto: nomeProduto
+                }
+            });
         console.log(`Resposta do servidor ${response.data}`);
         Swal.fire({
             title: 'Sucesso',

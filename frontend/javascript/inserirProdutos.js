@@ -2,7 +2,7 @@ const buttonInsert = document.getElementById('inserirProduto')
 const url = 'http://localhost:3001/data'
 
 buttonInsert.addEventListener('click', async () => {
-
+    const token = localStorage.getItem('authToken');
     const nomeProdutoElements = document.getElementsByClassName("nomeProduto");
     const valorProdutoElements = document.getElementsByClassName("valorProduto");
     if (nomeProdutoElements[0].value.length > 0 && valorProdutoElements[0].value.length > 0) {
@@ -10,10 +10,16 @@ buttonInsert.addEventListener('click', async () => {
         const valorProduto = parseFloat(valorProdutoElements[0].value.replace(',', '.'));
 
         try{
-            const response = await axios.post(url, {
-            nomeProduto: nomeProduto,
-            valor: valorProduto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-        });
+            const response = await axios.post(url, 
+                {
+                    nomeProduto: nomeProduto,
+                    valor: valorProduto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                }, 
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
         console.log(`Resposta do servidor ${response.data}`);
         Swal.fire({
             title: 'Sucesso',

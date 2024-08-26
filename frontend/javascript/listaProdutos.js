@@ -3,9 +3,13 @@ const url = 'http://localhost:3001/listaProdutos';
 
 
 listButton.addEventListener('click', async () => {
-
+    const token = localStorage.getItem('authToken');
     try{
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         const data = response.data;
         console.log(data.data)
         exibirDados(data.data);
